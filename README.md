@@ -9,10 +9,128 @@ CNI: Weave-Net
 Default number of nodes: 2
 
 root@k8s-m1:~# export KUBECONFIG=/etc/kubernetes/admin.conf
-root@k8s-m1:~# kubectl get all --all-namespaces
+root@k8s-m1:/etc/kubernetes# kubectl get all --all-namespaces
+NAMESPACE        NAME                                                                  READY   STATUS    RESTARTS   AGE
+development      pod/tiller-deploy-f5579c775-prp6d                                     1/1     Running   0          8m25s
+kube-system      pod/coredns-86c58d9df4-h8ngc                                          1/1     Running   0          10m
+kube-system      pod/coredns-86c58d9df4-m4jjm                                          1/1     Running   0          10m
+kube-system      pod/etcd-k8s-m1                                                       1/1     Running   0          11m
+kube-system      pod/kube-apiserver-k8s-m1                                             1/1     Running   0          11m
+kube-system      pod/kube-controller-manager-k8s-m1                                    1/1     Running   0          11m
+kube-system      pod/kube-proxy-7srrl                                                  1/1     Running   0          10m
+kube-system      pod/kube-proxy-mfhnc                                                  1/1     Running   0          12m
+kube-system      pod/kube-scheduler-k8s-m1                                             1/1     Running   0          11m
+kube-system      pod/kubernetes-dashboard-79ff88449c-dr5r8                             1/1     Running   0          12m
+kube-system      pod/original-anaconda-nginx-ingress-controller-6c78699dc7-8nr42       1/1     Running   0          6m33s
+kube-system      pod/original-anaconda-nginx-ingress-default-backend-6c8f664b6frw76j   1/1     Running   0          6m33s
+kube-system      pod/prometheus-alertmanager-5bbd595756-kp2ld                          2/2     Running   0          6m27s
+kube-system      pod/prometheus-kube-state-metrics-b4d7c746-5xpzw                      1/1     Running   0          6m27s
+kube-system      pod/prometheus-node-exporter-87n7c                                    1/1     Running   0          6m27s
+kube-system      pod/prometheus-pushgateway-695c7c958b-qprp9                           1/1     Running   0          6m27s
+kube-system      pod/prometheus-server-7f59447d54-g927c                                2/2     Running   0          6m27s
+kube-system      pod/vocal-chipmunk-nginx-ingress-controller-65dc744458-k42z8          1/1     Running   0          6m38s
+kube-system      pod/vocal-chipmunk-nginx-ingress-default-backend-6cbc98c75c-5m5f2     1/1     Running   0          6m38s
+kube-system      pod/weave-net-bxp6v                                                   2/2     Running   0          12m
+kube-system      pod/weave-net-prkf7                                                   2/2     Running   0          10m
+kube-system      pod/yummy-lemur-grafana-98f845967-2rs7s                               1/1     Running   0          6m15s
+metallb-system   pod/controller-7cc9c87cfb-45xtg                                       1/1     Running   0          6m7s
+metallb-system   pod/speaker-5bv8j                                                     1/1     Running   0          6m7s
+production       pod/tiller-deploy-5599546f9c-mgsxm                                    1/1     Running   0          8m20s
+staging          pod/tiller-deploy-b67b98695-qgdmt                                     1/1     Running   0          8m21s
+
+NAMESPACE     NAME                                                         TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                      AGE
+default       service/kubernetes                                           ClusterIP      10.96.0.1        <none>          443/TCP                      12m
+development   service/tiller-deploy                                        ClusterIP      10.111.144.80    <none>          44134/TCP                    8m27s
+kube-system   service/kube-dns                                             ClusterIP      10.96.0.10       <none>          53/UDP,53/TCP                12m
+kube-system   service/kubernetes-dashboard                                 ClusterIP      10.111.234.134   <none>          443/TCP                      12m
+kube-system   service/original-anaconda-nginx-ingress-controller           NodePort       10.108.161.87    <none>          80:30080/TCP,443:30443/TCP   6m34s
+kube-system   service/original-anaconda-nginx-ingress-controller-metrics   ClusterIP      10.103.113.225   <none>          9913/TCP                     6m34s
+kube-system   service/original-anaconda-nginx-ingress-controller-stats     ClusterIP      10.108.7.9       <none>          18080/TCP                    6m34s
+kube-system   service/original-anaconda-nginx-ingress-default-backend      ClusterIP      10.100.108.244   <none>          80/TCP                       6m33s
+kube-system   service/prometheus-alertmanager                              ClusterIP      10.109.166.133   <none>          80/TCP                       6m28s
+kube-system   service/prometheus-kube-state-metrics                        ClusterIP      None             <none>          80/TCP                       6m28s
+kube-system   service/prometheus-node-exporter                             ClusterIP      None             <none>          9100/TCP                     6m28s
+kube-system   service/prometheus-pushgateway                               ClusterIP      10.111.135.94    <none>          9091/TCP                     6m28s
+kube-system   service/prometheus-server                                    ClusterIP      10.107.160.203   <none>          80/TCP                       6m28s
+kube-system   service/vocal-chipmunk-nginx-ingress-controller              LoadBalancer   10.99.249.199    192.16.35.240   80:31629/TCP,443:31103/TCP   6m39s
+kube-system   service/vocal-chipmunk-nginx-ingress-controller-metrics      ClusterIP      10.100.176.229   <none>          9913/TCP                     6m39s
+kube-system   service/vocal-chipmunk-nginx-ingress-controller-stats        ClusterIP      10.109.177.92    <none>          18080/TCP                    6m39s
+kube-system   service/vocal-chipmunk-nginx-ingress-default-backend         ClusterIP      10.105.154.250   <none>          80/TCP                       6m39s
+kube-system   service/yummy-lemur-grafana                                  ClusterIP      10.101.132.37    <none>          80/TCP                       6m16s
+production    service/tiller-deploy                                        ClusterIP      10.99.131.223    <none>          44134/TCP                    8m20s
+staging       service/tiller-deploy                                        ClusterIP      10.104.95.60     <none>          44134/TCP                    8m21s
+
+NAMESPACE        NAME                                      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+kube-system      daemonset.apps/kube-proxy                 2         2         2       2            2           <none>          12m
+kube-system      daemonset.apps/prometheus-node-exporter   1         1         1       1            1           <none>          6m28s
+kube-system      daemonset.apps/weave-net                  2         2         2       2            2           <none>          12m
+metallb-system   daemonset.apps/speaker                    1         1         1       1            1           <none>          6m7s
+
+NAMESPACE        NAME                                                              READY   UP-TO-DATE   AVAILABLE   AGE
+development      deployment.apps/tiller-deploy                                     1/1     1            1           8m28s
+kube-system      deployment.apps/coredns                                           2/2     2            2           12m
+kube-system      deployment.apps/kubernetes-dashboard                              1/1     1            1           12m
+kube-system      deployment.apps/original-anaconda-nginx-ingress-controller        1/1     1            1           6m33s
+kube-system      deployment.apps/original-anaconda-nginx-ingress-default-backend   1/1     1            1           6m33s
+kube-system      deployment.apps/prometheus-alertmanager                           1/1     1            1           6m27s
+kube-system      deployment.apps/prometheus-kube-state-metrics                     1/1     1            1           6m27s
+kube-system      deployment.apps/prometheus-pushgateway                            1/1     1            1           6m27s
+kube-system      deployment.apps/prometheus-server                                 1/1     1            1           6m27s
+kube-system      deployment.apps/vocal-chipmunk-nginx-ingress-controller           1/1     1            1           6m39s
+kube-system      deployment.apps/vocal-chipmunk-nginx-ingress-default-backend      1/1     1            1           6m39s
+kube-system      deployment.apps/yummy-lemur-grafana                               1/1     1            1           6m16s
+metallb-system   deployment.apps/controller                                        1/1     1            1           6m7s
+production       deployment.apps/tiller-deploy                                     1/1     1            1           8m20s
+staging          deployment.apps/tiller-deploy                                     1/1     1            1           8m21s
+
+NAMESPACE        NAME                                                                         DESIRED   CURRENT   READY   AGE
+development      replicaset.apps/tiller-deploy-f5579c775                                      1         1         1       8m27s
+kube-system      replicaset.apps/coredns-86c58d9df4                                           2         2         2       12m
+kube-system      replicaset.apps/kubernetes-dashboard-79ff88449c                              1         1         1       12m
+kube-system      replicaset.apps/original-anaconda-nginx-ingress-controller-6c78699dc7        1         1         1       6m33s
+kube-system      replicaset.apps/original-anaconda-nginx-ingress-default-backend-6c8f664b6f   1         1         1       6m33s
+kube-system      replicaset.apps/prometheus-alertmanager-5bbd595756                           1         1         1       6m27s
+kube-system      replicaset.apps/prometheus-kube-state-metrics-b4d7c746                       1         1         1       6m27s
+kube-system      replicaset.apps/prometheus-pushgateway-695c7c958b                            1         1         1       6m27s
+kube-system      replicaset.apps/prometheus-server-7f59447d54                                 1         1         1       6m27s
+kube-system      replicaset.apps/vocal-chipmunk-nginx-ingress-controller-65dc744458           1         1         1       6m39s
+kube-system      replicaset.apps/vocal-chipmunk-nginx-ingress-default-backend-6cbc98c75c      1         1         1       6m38s
+kube-system      replicaset.apps/yummy-lemur-grafana-98f845967                                1         1         1       6m16s
+metallb-system   replicaset.apps/controller-7cc9c87cfb                                        1         1         1       6m7s
+production       replicaset.apps/tiller-deploy-5599546f9c                                     1         1         1       8m20s
+staging          replicaset.apps/tiller-deploy-b67b98695                                      1         1         1       8m21s
 
 
-root@k8s-m1:~# kubectl get pods -o wide --sort-by="{.spec.nodeName}" --all-namespaces
+
+root@k8s-m1:/etc/kubernetes# kubectl get pods -o wide --sort-by="{.spec.nodeName}" --all-namespaces
+NAMESPACE        NAME                                                              READY   STATUS    RESTARTS   AGE     IP             NODE     NOMINATED NODE   READINESS GATES
+kube-system      coredns-86c58d9df4-h8ngc                                          1/1     Running   0          10m     10.32.0.2      k8s-m1   <none>           <none>
+kube-system      kubernetes-dashboard-79ff88449c-dr5r8                             1/1     Running   0          12m     10.32.0.3      k8s-m1   <none>           <none>
+kube-system      coredns-86c58d9df4-m4jjm                                          1/1     Running   0          10m     10.32.0.4      k8s-m1   <none>           <none>
+kube-system      etcd-k8s-m1                                                       1/1     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+kube-system      kube-apiserver-k8s-m1                                             1/1     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+kube-system      kube-controller-manager-k8s-m1                                    1/1     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+kube-system      kube-proxy-mfhnc                                                  1/1     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+kube-system      weave-net-bxp6v                                                   2/2     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+kube-system      kube-scheduler-k8s-m1                                             1/1     Running   0          12m     192.16.35.11   k8s-m1   <none>           <none>
+development      tiller-deploy-f5579c775-prp6d                                     1/1     Running   0          9m5s    10.44.0.1      k8s-n1   <none>           <none>
+kube-system      original-anaconda-nginx-ingress-controller-6c78699dc7-8nr42       1/1     Running   0          7m13s   10.44.0.6      k8s-n1   <none>           <none>
+kube-system      original-anaconda-nginx-ingress-default-backend-6c8f664b6frw76j   1/1     Running   0          7m13s   10.44.0.5      k8s-n1   <none>           <none>
+kube-system      prometheus-alertmanager-5bbd595756-kp2ld                          2/2     Running   0          7m7s    10.44.0.10     k8s-n1   <none>           <none>
+kube-system      prometheus-kube-state-metrics-b4d7c746-5xpzw                      1/1     Running   0          7m7s    10.44.0.7      k8s-n1   <none>           <none>
+kube-system      prometheus-node-exporter-87n7c                                    1/1     Running   0          7m7s    192.16.35.10   k8s-n1   <none>           <none>
+kube-system      prometheus-pushgateway-695c7c958b-qprp9                           1/1     Running   0          7m7s    10.44.0.8      k8s-n1   <none>           <none>
+kube-system      prometheus-server-7f59447d54-g927c                                2/2     Running   0          7m7s    10.44.0.9      k8s-n1   <none>           <none>
+kube-system      vocal-chipmunk-nginx-ingress-controller-65dc744458-k42z8          1/1     Running   0          7m18s   192.16.35.10   k8s-n1   <none>           <none>
+kube-system      vocal-chipmunk-nginx-ingress-default-backend-6cbc98c75c-5m5f2     1/1     Running   0          7m18s   10.44.0.4      k8s-n1   <none>           <none>
+kube-system      kube-proxy-7srrl                                                  1/1     Running   0          10m     192.16.35.10   k8s-n1   <none>           <none>
+kube-system      weave-net-prkf7                                                   2/2     Running   0          10m     192.16.35.10   k8s-n1   <none>           <none>
+kube-system      yummy-lemur-grafana-98f845967-2rs7s                               1/1     Running   0          6m55s   10.44.0.11     k8s-n1   <none>           <none>
+metallb-system   controller-7cc9c87cfb-45xtg                                       1/1     Running   0          6m47s   10.44.0.12     k8s-n1   <none>           <none>
+metallb-system   speaker-5bv8j                                                     1/1     Running   0          6m47s   192.16.35.10   k8s-n1   <none>           <none>
+production       tiller-deploy-5599546f9c-mgsxm                                    1/1     Running   0          9m      10.44.0.3      k8s-n1   <none>           <none>
+staging          tiller-deploy-b67b98695-qgdmt                                     1/1     Running   0          9m1s    10.44.0.2      k8s-n1   <none>           <none>
+
 
 
 ```
@@ -174,9 +292,16 @@ The remote system should have Kubernetes masters/workers setup.
 
 ```
 ```
-root@k8s-m1:~# kubectl get ns
+root@k8s-m1:/etc/kubernetes# kubectl get ns
+NAME             STATUS   AGE
+default          Active   10m
+development      Active   7m59s
+kube-public      Active   10m
+kube-system      Active   10m
+metallb-system   Active   4m35s
+production       Active   7m59s
+staging          Active   7m59s
 
-root@k8s-m1:~# kubectl get all --all-namespaces
 
 root@k8s-m1:~# export PROD=/etc/kubernetes/pki/helm/prod/
 root@k8s-m1:~# helm list --tls --tls-ca-cert ${PROD}/tiller-prod-ca.pem --tls-cert ${PROD}/helm-prod-cert.pem --tls-key ${PROD}/helm-prod-key.pem --tiller-namespace=production --namespace=kube-system
@@ -242,10 +367,10 @@ HostMax:   192.16.35.254        11000000.00010000.00100011.1111 1110
 Broadcast: 192.16.35.255        11000000.00010000.00100011.1111 1111
 Hosts/Net: 14      
 
-$ sudo route add -net 192.168.35.0/24 gw 192.16.35.1 if we using 192.168.35.240/28 in example-layer2-config.yaml
+Note: sudo route add -net 192.168.35.0/24 gw 192.16.35.1 if we using 192.168.35.240/28 in example-layer2-config.yaml
 
-$ kubectl get svc --all-namespaces|grep Load
-kube-system   opinionated-eel-nginx-ingress-controller           LoadBalancer   10.101.216.228   192.16.35.240   80:32220/TCP,443:30614/TCP   24m
+root@k8s-m1:/etc/kubernetes# kubectl get svc --all-namespaces|grep LoadBalancer
+kube-system   vocal-chipmunk-nginx-ingress-controller              LoadBalancer   10.99.249.199    192.16.35.240   80:31629/TCP,443:31103/TCP   4m6s
 
 $ echo "192.16.35.240 grafana.local"|sudo tee -a "/etc/hosts"
 
