@@ -1,9 +1,0 @@
-controller:
-  config:
-    ssl-redirect: "false"
-  hostNetwork: true
-  ingressClass: nginx-external
-  metrics:
-    enabled: true
-  stats:
-    enabled: true
