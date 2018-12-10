@@ -230,7 +230,7 @@ etcd-master1                            1/1       Running   0          23m
 
 =========================================================================
 
-### K8s addons install via ansible role with MetalLB for LoadBalancer
+### K8s addons install via ansible role with MetalLB in ARP mode to provide external IPs (Load Balancer) for the cluster.
 
 
 This role installs the addons to Kubernetes cluster. Addons installed:
@@ -313,7 +313,7 @@ yellow-arachnid 	1       	Thu Dec  6 17:51:44 2018	DEPLOYED	nginx-ingress-1.0.1	
 
 ```
 
-### MetalLB for Vagrant ENV
+### MetalLB (Vagrant ENV) in ARP mode to provide external IPs (Load Balancer) for the cluster.
 
 https://metallb.universe.tf/tutorial/layer2/
 
