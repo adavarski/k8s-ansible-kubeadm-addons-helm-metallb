@@ -112,7 +112,7 @@ etcd-master1                            1/1       Running   0          23m
 
 =========================================================================
 
-### K8s addons install via ansible role with MetalLB
+### K8s addons install via ansible role with MetalLB for LoadBalancer
 
 
 This role installs the addons to Kubernetes cluster. Addons installed:
@@ -200,16 +200,10 @@ MetalLB aims to redress this imbalance by offering a Network LB implementation t
 
 To implement MetalLB in this Vagrant env:
 ```
-change from nginx-internal to nginx-external
+nginx-external : prometheus.yml.j2 & grafana.yml.j2
 
-$ grep external prometheus.yml.j2 
-      kubernetes.io/ingress.class: nginx-external
-      kubernetes.io/ingress.class: nginx-external
-      kubernetes.io/ingress.class: nginx-external
-$ grep external grafana.yml.j2 
-    kubernetes.io/ingress.class: nginx-external
-    
-We have a sample MetalLB configuration in example-layer2-config.yaml.j2. Let’s take a look at it:
+  
+We have a sample MetalLB configuration in example-layer2-config.yaml.j2:
 
 apiVersion: v1
 kind: ConfigMap
