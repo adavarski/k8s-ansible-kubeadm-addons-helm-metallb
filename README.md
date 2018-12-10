@@ -154,7 +154,7 @@ etcd-master1                            1/1       Running   0          23m
 
 =========================================================================
 
-### K8s addons install via ansible role
+### K8s addons install via ansible role with MetalLB
 
 
 This role installs the addons to Kubernetes cluster. Addons installed:
@@ -164,7 +164,7 @@ This role installs the addons to Kubernetes cluster. Addons installed:
 * Nginx Ingress (External Services)
 * Prometheus
 * Grafana (includes a dashboard, using Prometheus as DataSource)
-* MetalLB for LoadBalancer provisioning
+* MetalLB for LoadBalancer
 
 #### Requirements
 
@@ -328,14 +328,10 @@ BROWSER: http://localhost:3000 --- admin:admin --- import json file if needed.
 
 ```
 
-### K8s addons via ansible with MetalLB
+### MetalLB for Vagrant ENV
 
 https://metallb.universe.tf/tutorial/layer2/
 
-```
-$ kubectl get svc --all-namespaces|grep Load
-kube-system   opinionated-eel-nginx-ingress-controller           LoadBalancer   10.101.216.228    <pending>   80:32220/TCP,443:30614/TCP   24m
-```
 Kubernetes does not offer an implementation of network load-balancers (Services of type LoadBalancer) for bare metal clusters. The implementations of Network LB that Kubernetes does ship with are all glue code that calls out to various IaaS platforms (GCP, AWS, Azure…). If you’re not running on a supported IaaS platform (GCP, AWS, Azure…), LoadBalancers will remain in the “pending” state indefinitely when created.
 
 Bare metal cluster operators are left with two lesser tools to bring user traffic into their clusters, “NodePort” and “externalIPs” services. Both of these options have significant downsides for production use, which makes bare metal clusters second class citizens in the Kubernetes ecosystem.
@@ -346,15 +342,13 @@ To implement MetalLB in this Vagrant env:
 ```
 change from nginx-internal to nginx-external
 
-davar@home ~/LABS/k8s-ansible-kubeadm-addons-helm/roles/addons/templates/helm-values $ grep external prometheus.yml.j2 
+$ grep external prometheus.yml.j2 
       kubernetes.io/ingress.class: nginx-external
       kubernetes.io/ingress.class: nginx-external
       kubernetes.io/ingress.class: nginx-external
-davar@home ~/LABS/k8s-ansible-kubeadm-addons-helm/roles/addons/templates/helm-values $ grep external grafana.yml.j2 
+$ grep external grafana.yml.j2 
     kubernetes.io/ingress.class: nginx-external
     
-$ vagrant destroy -f; vagrant up    
-
 Install metallb:
 
 $ kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
