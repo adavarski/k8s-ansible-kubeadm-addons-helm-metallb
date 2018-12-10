@@ -1,0 +1,10 @@
+---
+
+- name: Setup Namespaces
+  include: setup-namespaces.yml
+
+- name: Setup Helm and Tiller
+  include: helm.yml
+
+- name: Setup metallb
+  include: setup-metallb.yml
