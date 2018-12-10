@@ -8,6 +8,7 @@ This role installs the addons to Kubernetes cluster. Addons installed:
 * Nginx Ingress (External Services)
 * Prometheus
 * Grafana (includes a dashboard, using Prometheus as DataSource)
+* MetalLB for LoadBalancing
 
 Requirements
 ------------
